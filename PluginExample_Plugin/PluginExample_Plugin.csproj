@@ -44,6 +44,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PluginArch\PluginArch.csproj">
+      <Project>{BC26E1BF-5879-4873-990D-93CB2B2F15A7}</Project>
+      <Name>PluginArch</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PluginExample_PluginTemplate\PluginExample_PluginTemplate.csproj">
       <Project>{6ACBA78C-89FE-473D-98C2-E2472E2A4137}</Project>
       <Name>PluginExample_PluginTemplate</Name>

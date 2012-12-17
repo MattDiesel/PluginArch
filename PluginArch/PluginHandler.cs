@@ -6,12 +6,28 @@ using System.Reflection;
 
 namespace PluginArch
 {
+    public class PluginTemplate
+    {
+        internal PluginTemplateBridge bridge;
+        public virtual PluginTemplateBridge Bridge
+        {
+            get
+            {
+                return this.bridge;
+            }
+        }
+    }
+
+    public class PluginTemplateBridge
+    {
+    }
+
     public class PluginHandler<T> where T : new()
     {
         List<object> plugins;
-        object bridge;
+        PluginTemplateBridge bridge;
 
-        public PluginHandler(object br)
+        public PluginHandler(PluginTemplateBridge br)
         {
             this.plugins = new List<object>();
             this.bridge = br;
@@ -22,7 +38,11 @@ namespace PluginArch
             foreach (Type t in asmbl.GetTypes())
             {
                 if (t.BaseType == typeof(T))
-                    plugins.Add(Activator.CreateInstance(t, this.bridge));
+                {
+                    PluginTemplate tmp = (PluginTemplate)Activator.CreateInstance(t);
+                    tmp.bridge = this.bridge;
+                    plugins.Add(tmp);
+                }
             }
         }
 

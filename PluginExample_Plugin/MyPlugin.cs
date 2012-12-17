@@ -8,11 +8,6 @@ namespace PluginExample_Plugin
 {
     public class MyPlugin : MyPluginTemplate
     {
-        public MyPlugin(MyPluginTemplateBridge br)
-        {
-            this.Bridge = br;
-        }
-
         public override void OnNumber(int n)
         {
             if (n % 15 == 0)
